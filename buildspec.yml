@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing Go...
+      - yum install -y golang
+  pre_build:
+    commands:
+      - echo Checking Go version...
+      - go version
+  build:
+    commands:
+      - echo Building the application...
+      - go build -o app main.go
+  post_build:
+    commands:
+      - echo Build completed. Zipping the build...
+      - zip -r app.zip app
+artifacts:
+  files:
+    - app.zip
